@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+   - stable
+services:
+   - docker
+before_install:
+   - npm install -g gitbook-cli
+script:
+   - export ATHENA_RELEASE="0.4.1"
+   - wget -O "$HOME/athena.tar.gz" "https://github.com/athena-oss/athena/archive/v${ATHENA_RELEASE}.tar.gz" && tar -v -C "$HOME" -xzf "$HOME/athena.tar.gz" && mv "$HOME/athena-${ATHENA_RELEASE}" "$HOME/athena"
+   - ln -s "$TRAVIS_BUILD_DIR" "$HOME/athena/plugins/selenium"
+   - $HOME/athena/athena cli tests/
+after_success:
+   - docs/publish_docs
+cache:
+   directories:
+      - $(npm config get prefix)/bin/gitbook
+env:
+   global:
+      secure: hSLLP2XN80q93vcZp00cAiH4BrV47lnAMExU5PYdgLWyNS5gd7WyiUGPCScedlI3KLUzY/qqB7ZtlGDFFMIgnFHBLCn9e+gNPUkvI+UMZs6eR6/E+WmiBY2kUYhQH03S8/pVOpI1q+U0XRf3KOyW9/+zotr7P8Za6RP1oaMoA944jef1ALHJw26C99HXWWUV+Ei/fcHxywHTVtPh5hSPQyWkcXGy04Gr7G+SNME6tRn+S09oo+KEhUSqTUVb2dyRAE95SoUsRSEYnwBMMQxbGm7+v3anLtBrDjaH8oEM7BipJjK3zkKv29b+pDmYiVBz1YIC4dZAvM5WdGXLQ4AOBc1Kg064wcHg86aw5gcx+Nb+oQtgAd/0YeqYURWB4Xx7QYSgKXPEeEno7JmxGz1+QL6mLUZrtAXZ9dZ3o4DL3tBK3/WNxNFr8TWQxrri8FDclr2A4QDpC1p19fmTaqcRQQVBIBA6QenILbr4mczrd5QZB6RbSzq2kUPU/5gQgLFNcEylzhardDyytYUn7TZd9IOsiXEda+WjR4TIj3byTreH//a9tt0CDHaYP6xYu5o7vQDHEoeAmUntNnAxpMXiFdoYgxSQWwO8c8xj7Qt8LCABUxPiHzoDTcqUv3fxgn71ahqYzZ6HpEOj+UEwJhkakIdptyS34DPHcoassDst9xI=
