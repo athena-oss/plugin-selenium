@@ -18,8 +18,8 @@ or
 
 * On MAC OSX using [Homebrew](http://brew.sh/) :
 ```bash
-$ brew tap athena-oss/athena
-$ brew install athena
+$ brew tap athena-oss/plugin-selenium
+$ brew install plugin-selenium
 ```
 
 Read the [Documentation](http://athena-oss.github.io/plugin-selenium) on using Athena.
