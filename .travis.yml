@@ -8,7 +8,7 @@ before_install:
 script:
    - export ATHENA_RELEASE="0.4.1"
    - wget -O "$HOME/athena.tar.gz" "https://github.com/athena-oss/athena/archive/v${ATHENA_RELEASE}.tar.gz" && tar -v -C "$HOME" -xzf "$HOME/athena.tar.gz" && mv "$HOME/athena-${ATHENA_RELEASE}" "$HOME/athena"
-   - ln -s "$TRAVIS_BUILD_DIR" "$HOME/athena/plugins/selenium"
+   - ln -s "$TRAVIS_BUILD_DIR" "$HOME/athena/plugins/selenium" && touch $HOME/athena/plugins/base/athena.lock
    - $HOME/athena/athena cli tests/
 after_success:
    - docs/publish_docs
