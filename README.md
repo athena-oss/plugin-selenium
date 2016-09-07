@@ -14,6 +14,14 @@ To install it simply run the following command :
 $ athena plugins install selenium https://github.com/athena-oss/plugin-selenium.git
 ```
 
+or
+
+* On MAC OSX using [Homebrew](http://brew.sh/) :
+```bash
+$ brew tap athena-oss/athena
+$ brew install athena
+```
+
 Read the [Documentation](http://athena-oss.github.io/plugin-selenium) on using Athena.
 
 ## How to Use ?
