@@ -18,7 +18,7 @@ or
 
 * On MAC OSX using [Homebrew](http://brew.sh/) :
 ```bash
-$ brew tap athena-oss/plugin-selenium
+$ brew tap athena-oss/tap
 $ brew install plugin-selenium
 ```
 
