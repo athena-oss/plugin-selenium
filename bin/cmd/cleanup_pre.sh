@@ -17,17 +17,16 @@ fi
 
 case "$type" in
 	"all")
-		athena.plugins.selenium.stop_all_hubs
-		athena.plugins.selenium.stop_all_browsers
+		athena.plugins.selenium.stop_components
 		types+=(hub firefox firefox-debug chrome chrome-debug phantomjs)
 	;;
 	"hub")
-		athena.plugins.selenium.stop_all_hubs
+		athena.plugins.selenium.stop_components "hub"
 		types+=(hub)
 	;;
 	"firefox"|"firefox-debug"|"chrome"|"chrome-debug"|"phantomjs")
 		types+=("$type")
-		athena.plugins.selenium.stop_all_browsers "$type"
+		athena.plugins.selenium.stop_components "$type"
 	;;
 	*)
 		athena.fatal "Unrecognized component ${type}."

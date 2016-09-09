@@ -1,7 +1,7 @@
 CMD_DESCRIPTION="Starts a shell inside the component."
 
-athena.usage 1 "<type|component_name> [--port=<port>|--instance=<instance_nr>]" "$(cat <<EOF
-    <type|component_name>      ; Starts shell in the specific <type> (hub, firefox, ...) or
+athena.usage 1 "<type> [--port=<port>|--instance=<instance_nr>]" "$(cat <<EOF
+    <type>                     ; Starts shell in the specific <type> (hub, firefox, ...) or
                                ; in the <component_name> like seen in 'athena info' output
     [--port=<port>]            ; In case the <type> to access was not started without a port
                                ; the <port> needs to be specified
@@ -15,38 +15,17 @@ EOF
 )"
 
 type="$(athena.arg 1)"
-port=""
-instance_nr=""
-
+instance_id=
 if athena.argument.argument_exists "--port"; then
-	athena.argument.get_argument_and_remove "--port" "port"
+	athena.argument.get_argument_and_remove "--port" "instance_id"
+elif athena.argument.argument_exists "--instance"; then
+	athena.argument.get_argument_and_remove "--instance" "instance_id"
 fi
 
-if athena.argument.argument_exists "--instance"; then
-	athena.argument.get_argument_and_remove "--instance" instance_nr
+if ! athena.docker.is_container_running "$container_name"; then
+	athena.os.exit_with_msg "Container '$container_name' isn't running.."
 fi
 
-if [ -n "$port" -a -n "$instance_nr" ]; then
-	athena.fatal "you cannot select --port and --instance at the same time!"
-fi
-
-port=${port:-default}
-
-# athena.arg(1) == component name
-if athena.docker.is_container_running "$type"; then
-	container_name=$type
-else
-	if [ -n "$instance_nr" ]; then
-		container_name="$(athena.plugins.selenium._type_prefix $type)-multiple-$instance_nr-$(athena.os.get_instance)"
-	else
-		container_name="$(athena.plugins.selenium._type_prefix $type)-$port-$(athena.os.get_instance)"
-	fi
-
-	if ! athena.docker.is_container_running "$container_name"; then
-		athena.os.exit_with_msg "container '$container_name' isn't running"
-	fi
-fi
-
-
-athena.info "placing you into the container '$container_name'"
+container_name=$(athena.plugins.selenium.get_container_name "$type" $instance_id)
+athena.info "Placing you into the container '$container_name'..."
 athena.docker.exec -ti "$container_name" /usr/bin/env bash
