@@ -128,11 +128,13 @@ function athena.plugins.selenium.remove_images_of_type()
 # USAGE: athena.plugins.selenium.add_link_to_docker_options <type> <link_name>
 function athena.plugins.selenium.add_link_to_docker_options()
 {
+	athena.argument.argument_is_not_empty_or_fail "$1" "type"
+	athena.argument.argument_is_not_empty_or_fail "$2" "link_name"
 	local type="$1"
 	local link_name="$2"
 
 	if athena.argument.argument_exists_and_remove "--skip-${type}"; then
-		athena.info "Skipping auto link with ${type}..."
+		athena.color.print_info "Skipping auto link with ${type}..."
 		return 1
 	fi
 
@@ -152,11 +154,11 @@ function athena.plugins.selenium.add_link_to_docker_options()
 		fi
 
 		if ! athena.docker.is_container_running "$container_name"; then
-			athena.debug "Skipped auto link with ${type} '${container_name}'. Container is not running."
+			athena.color.print_debug "Skipped auto link with ${type} '${container_name}'. Container is not running."
 			return 1
 		fi
 	fi
 
-	athena.info "Auto linking with $type container '${container_name}'..."
+	athena.color.print_info "Auto linking with $type container '${container_name}'..."
 	docker_options+=("--link" "${container_name}:${link_name}")
 }

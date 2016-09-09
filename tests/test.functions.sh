@@ -128,6 +128,44 @@ function testcase_athena.plugins.selenium.stop_components()
 	athena.test.assert_output "athena.plugins.selenium.stop_components" "firefox 1 --global" "firefox" "1"
 }
 
+function testcase_athena.plugins.selenium.add_link_to_docker_options()
+{
+	athena.test.assert_exit_code.expects_fail "athena.plugins.selenium.add_link_to_docker_options"
+	athena.test.assert_exit_code.expects_fail "athena.plugins.selenium.add_link_to_docker_options" "hub"
+
+	athena.argument.set_arguments "--skip-hub" "hub"
+	athena.test.assert_exit_code.expects_fail "athena.plugins.selenium.add_link_to_docker_options" "hub" "hub"
+
+	local container_name="mycontainer"
+	athena.argument.set_arguments "--link-hub=${container_name}"
+	athena.test.mock.returns "athena.docker.is_container_running" 1
+	athena.test.assert_exit_code.expects_fail "athena.plugins.selenium.add_link_to_docker_options" "hub" "hub"
+
+	docker_options=()
+	athena.argument.set_arguments "--link-hub=${container_name}"
+	athena.test.mock.returns "athena.docker.is_container_running" 0
+	athena.test.mock "athena.color.print_info" "_void"
+	athena.plugins.selenium.add_link_to_docker_options "hub" "hub"
+	athena.test.assert_value "${docker_options[*]}" "--link ${container_name}:hub"
+
+	athena.argument.set_arguments
+	athena.test.mock.returns "athena.docker.is_container_running" 1
+	athena.test.mock "athena.color.print_debug" "_void"
+	athena.test.assert_exit_code.expects_fail "athena.plugins.selenium.add_link_to_docker_options"
+
+	docker_options=()
+	container_name="acontainer"
+	athena.test.mock "athena.plugin.require" "_void"
+	athena.test.mock.outputs "athena.plugins.proxy.get_container_name" "$container_name"
+	athena.test.mock.returns "athena.docker.is_container_running" 0
+	athena.plugins.selenium.add_link_to_docker_options "proxy" "athena-proxy"
+	athena.test.assert_value "${docker_options[*]}" "--link ${container_name}:athena-proxy"
+
+	docker_options=()
+	athena.plugins.selenium.add_link_to_docker_options "hub" "hub-spinpans"
+	athena.test.assert_value "${docker_options[*]}" "--link ${container_name}:hub-spinpans"
+}
+
 function _void()
 {
 	return 0
