@@ -16,43 +16,30 @@ EOF
 
 type=$(athena.arg 1)
 athena.argument.pop_arguments 1
-port=""
-instance_nr=""
 
+instance_id=
 if athena.argument.argument_exists "--port"; then
-	athena.argument.get_argument_and_remove "--port" "port"
+	athena.argument.get_argument_and_remove "--port" "instance_id"
+elif athena.argument.argument_exists "--instance"; then
+	athena.argument.get_argument_and_remove "--instance" "instance_id"
 fi
 
-if athena.argument.argument_exists "--instance"; then
-	athena.argument.get_argument_and_remove "--instance" instance_nr
-fi
-
-if [ -n "$port" -a -n "$instance_nr" ]; then
-	athena.fatal "you cannot select --port and --instance at the same time!"
+if [[ -n "$instance_id" ]]; then
+	athena.info "Criteria: port or instance id of ${instance_id} set..."
 fi
 
 case "$type" in
 	"all")
-		athena.plugins.selenium.stop_all_hubs
-		athena.plugins.selenium.stop_all_browsers
+		athena.info "Stopping all components..."
+		athena.plugins.selenium.stop_components
 	;;
 	"hub")
-		if [ -n "$port" ]; then
-			athena.plugins.selenium.stop_hub "$port"
-		elif [ -n "$instance_nr" ]; then
-			athena.plugins.selenium.stop_hub "multiple-$instance_nr"
-		else
-			athena.plugins.selenium.stop_all_hubs
-		fi
+		athena.info "Stopping hub..."
+		athena.plugins.selenium.stop_components "hub" $instance_id
 	;;
 	"firefox"|"firefox-debug"|"chrome"|"chrome-debug"|"phantomjs")
-		if [ -n "$port" ]; then
-			athena.plugins.selenium.stop_browser "$type" "$port"
-		elif [ -n "$instance_nr" ]; then
-			athena.plugins.selenium.stop_browser "$type" "multiple-$instance_nr"
-		else
-			athena.plugins.selenium.stop_all_browsers "$type"
-		fi
+		athena.info "Stopping ${type}..."
+		athena.plugins.selenium.stop_components "$type" $instance_id
 	;;
 	*)
 		athena.fatal "Unrecognized component ${type}."
