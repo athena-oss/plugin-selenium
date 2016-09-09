@@ -383,20 +383,7 @@
 </li>
 <li><code>phantomjs</code>
 </li></ul>
-<h1 id="link-grid-nodes-to-local-hub">Link Grid Nodes to Local Hub</h1><p>If you started a Selenium Hub locally, and you want your node to be able to register in it, you&apos;ll have to link both containers.</p><p><code>athena info</code> command will list all the runnig containers.</p><pre><code class="lang-bash">$ athena info
-       ___   __  __
-      /   | / /_/ /_  ___  ____  ____ _
-     / /| |/ __/ __ \/ _ \/ __ \/ __  /
-    / ___ / /_/ / / /  __/ / / / /_/ /
-   /_/  |_\__/_/ /_/\___/_/ /_/\__,_/
-                              v0.4.0
-  ==================================
-
-[INFO] Running containers [image|container|status]:
-
- * selenium/hub  athena-selenium-hub-default-0  [UP]</code></pre>
-<p>Now we use the container name:</p><pre><code class="lang-bash">$ athena selenium start firefox 2.53.0 --link=athena-selenium-hub-default-0:hub</code></pre>
-<h1 id="expose-grid-hub-or-nodes-port">Expose Grid Hub or Nodes Port</h1><p>You can optionally expose component port number by setting <code>--port=&lt;port&gt;</code> to publish externally under <code>&lt;port&gt;</code> number.</p><pre><code class="lang-bash">$ athena selenium start hub 2.53.0 --port=5001</code></pre>
+<h1 id="link-grid-nodes-to-local-hub">Link Grid Nodes to Local Hub</h1><p>When a Selenium Grid Node is started, it will try to automatically link with a running Grid Hub or/and Proxy Server.</p><p>In case <code>--skip-hub</code> or/and <code>--skip-proxy</code> exists, the link will not be performed.</p><p>For performing a link with another running container, you can optionally specify <code>--link-hub=&lt;container_name&gt;</code> and/or <code>--link-proxy=&lt;container_name&gt;</code>.</p><h1 id="expose-grid-hub-or-nodes-port">Expose Grid Hub or Nodes Port</h1><p>You can optionally expose component port number by setting <code>--port=&lt;port&gt;</code> to publish externally under <code>&lt;port&gt;</code> number.</p><pre><code class="lang-bash">$ athena selenium start hub 2.53.0 --port=5001</code></pre>
 <pre><code class="lang-bash">$ athena selenium start firefox 2.53.0 --port=5001</code></pre>
 <p><strong>NOTE:</strong> This setting is available for all nodes and the hub.</p><h1 id="versions">Versions</h1><p>A list of available versions for both hub and nodes, can be found in official Selenium Docker Hub page.</p><ul><li><a href="https://hub.docker.com/r/selenium/hub/tags/" target="_blank">https://hub.docker.com/r/selenium/hub/tags/</a>
 </li>
@@ -447,7 +434,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Running Hub and Nodes","level":"1.2","depth":1,"next":{"title":"Selenium Grid Hub","level":"1.2.1","depth":2,"anchor":"#selenium-grid-hub","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#selenium-grid-hub","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"getting-started/running-grid-hub-and-nodes.md","mtime":"2016-09-08T08:43:37.056Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-08T08:44:46.763Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Running Hub and Nodes","level":"1.2","depth":1,"next":{"title":"Selenium Grid Hub","level":"1.2.1","depth":2,"anchor":"#selenium-grid-hub","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#selenium-grid-hub","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"getting-started/running-grid-hub-and-nodes.md","mtime":"2016-09-09T14:01:30.668Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-09T14:02:40.333Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
