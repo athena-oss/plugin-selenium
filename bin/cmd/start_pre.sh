@@ -38,38 +38,8 @@ if athena.argument.argument_exists "--instances"; then
 fi
 
 if [[ "$type" != "hub" ]]; then
-	if ! athena.argument.argument_exists_and_remove "--skip-hub"; then
-		container_name=
-		if athena.argument.argument_exists "--link-hub"; then
-			athena.argument.get_argument_and_remove "--link-hub" "container_name"
-		else
-			container_name="$(athena.plugins.selenium.get_container_name hub)"
-		fi
-
-		if ! athena.docker.is_container_running "$container_name"; then
-			athena.debug "Skipped auto link with Selenium Hub '${container_name}'. Container is not running."
-		else
-			athena.info "Auto linking with Selenium Hub '${container_name}'..."
-			docker_options+=("--link" "${container_name}:hub")
-		fi
-	fi
-
-	if ! athena.argument.argument_exists_and_remove "--skip-proxy"; then
-		container_name=
-		if athena.argument.argument_exists "--link-proxy"; then
-			athena.argument.get_argument_and_remove "--link-proxy" "container_name"
-		else
-			athena.plugin.require "proxy"
-			container_name="$(athena.plugins.proxy.get_container_name)"
-		fi
-
-		if ! athena.docker.is_container_running "$container_name"; then
-			athena.debug "Skipped auto link with Proxy '${container_name}'. Container is not running."
-		else
-			athena.info "Auto linking with Proxy '${container_name}'..."
-			docker_options+=("--link" "${container_name}:athena-proxy")
-		fi
-	fi
+	athena.plugins.selenium.add_link_to_docker_options "hub" "hub"
+	athena.plugins.selenium.add_link_to_docker_options "proxy" "athena-proxy"
 fi
 
 # add other docker options
