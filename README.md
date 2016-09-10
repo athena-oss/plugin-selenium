@@ -6,6 +6,9 @@ It supports management of Selenium components such as the Grid Hub as well as th
 
 You can easily use this plugin in your local development machine or in a CI/CD pipeline.
 
+If you are interested in creating browser automation tests, check out the [Athena PHP plugin](https://github.com/athena-oss/plugin-php).
+
+
 ## How to Install ?
 
 To install it simply run the following command :
@@ -22,7 +25,7 @@ $ brew tap athena-oss/tap
 $ brew install plugin-selenium
 ```
 
-Read the [Documentation](http://athena-oss.github.io/plugin-selenium) on using Athena.
+Read the [Documentation](http://athena-oss.github.io/plugin-selenium) on using the Athena Selenium plugin.
 
 ## How to Use ?
 
