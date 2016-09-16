@@ -27,7 +27,7 @@ For performing a link with another running container, you can optionally specify
 
 # Expose Grid Hub or Nodes Port
 
-You can optionally expose component port number by setting `--port=<port>` to publish externally under `<port>` number.
+You can optionally expose component port number by setting `--port=<port>` to publish externally under `<port>` number. This will expose the default port 4444 (Selenium management port). This setting is available for all nodes and the hub.
 
 ```bash
 $ athena selenium start hub 2.53.0 --port=5001
@@ -37,7 +37,13 @@ $ athena selenium start hub 2.53.0 --port=5001
 $ athena selenium start firefox 2.53.0 --port=5001
 ```
 
-**NOTE:** This setting is available for all nodes and the hub.
+**NOTE:** When using `chrome-debug` or `firefox-debug`, in order to access the vnc server you must specify the following options after the command :
+
+`-p <the_port_you_want_to_bind>:5900` 
+
+e.g.: 
+
+`-p 6002:5900`
 
 # Versions
 
