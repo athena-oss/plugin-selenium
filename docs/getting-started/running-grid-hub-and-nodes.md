@@ -43,7 +43,7 @@ $ athena selenium start firefox 2.53.0 --port=5001
 
 e.g.: 
 
-`-p 6002:5900`
+`athena selenium start firefox-debug 2.53.0 -p 6002:5900`
 
 # Versions
 
