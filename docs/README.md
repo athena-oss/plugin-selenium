@@ -94,3 +94,18 @@ cleanups and refactorings).
 ## License
 
 Licensed under the [Apache License Version 2.0 (APLv2)](LICENSE).
+
+
+## Troubleshooting
+
+* Debugging Browser with vnc and Docker for Mac
+
+There is a [known issue](https://github.com/SeleniumHQ/docker-selenium/issues/227) with docker for mac and Selenium node docker images. To workaround this situation add the following options to the start command :
+```bash
+-e no_proxy=localhost -e HUB_ENV_no_proxy=localhost
+```
+e.g.:
+
+```bash
+athena selenium start firefox-debug latest -p 6002:5900 -e no_proxy=localhost -e HUB_ENV_no_proxy=localhost
+```
