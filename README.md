@@ -11,18 +11,29 @@ If you are interested in creating browser automation tests, check out the [Athen
 
 ## How to Install ?
 
-To install it simply run the following command :
+**On Linux**
+
+* Using `apt-get` :
 
 ```bash
-$ athena plugins install selenium https://github.com/athena-oss/plugin-selenium.git
+$ sudo add-apt-repository ppa:athena-oss/athena
+$ sudo apt-get update
+$ sudo apt-get install athena-plugin-selenium
 ```
 
-or
+**On MAC OSX**
 
-* On MAC OSX using [Homebrew](http://brew.sh/) :
+* Using [Homebrew](http://brew.sh/) :
+
 ```bash
 $ brew tap athena-oss/tap
 $ brew install plugin-selenium
+```
+
+**Alternative**
+
+```bash
+$ athena plugins install selenium https://github.com/athena-oss/plugin-selenium.git
 ```
 
 Read the [Documentation](http://athena-oss.github.io/plugin-selenium) on using the Athena Selenium plugin.
