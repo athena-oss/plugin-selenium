@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Contributing · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Contributing · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -371,59 +371,95 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="contributing-to-athena-selenium-plugin">Contributing to Athena Selenium Plugin</h1><p>Athena is the first <a href="http://www.olx.com/" target="_blank">OLX</a> open source project that is both under very active development and is also being used to automate stuff at <a href="http://www.olx.com/" target="_blank">OLX</a>. We&apos;re still working the details to make contributing to this project as easy and transparent as possible. Hopefully with the help of this document and your feedback we will eventually make it.</p><h2 id="our-development-process">Our Development Process</h2><p>Some of our core contributers will be working directly on GitHub. These changes will be public from the beginning.</p><h3 id="master-changes-fast"><code>master</code> changes fast</h3><p>We move fast and most likely things will break. Every time there is a commit our CI server will run the tests and hopefully they will pass all times. We will do our best to properly communicate the changes that can affect the application API and always version appropriately in order to make easier for you to use a specific version.</p><h3 id="pull-requests">Pull Requests</h3><p>The core contributors will be monitoring for pull requests. When we get one, we will pull it in and apply it to our codebase and run our test suite to ensure nothing breaks. Then one of the core contributors needs to verify that all is working appropriately. When the API changes we may need to fix internal uses, which could cause some delay. We&apos;ll do our best to provide updates and feedback throughout the process.</p><p><em>Before</em> submitting a pull request, please make sure the following is done:</p><ol><li>Fork the repo and create your branch from <code>master</code>.
+                                <h1 id="contributing-to-athena-selenium-plugin">Contributing to Athena Selenium Plugin</h1>
+<p>Athena is the first <a href="http://www.olx.com/" target="_blank">OLX</a> open source project that is both under very active development and is also being used to automate stuff at <a href="http://www.olx.com/" target="_blank">OLX</a>. We&apos;re still working the details to make contributing to this project as easy and transparent as possible. Hopefully with the help of this document and your feedback we will eventually make it.</p>
+<h2 id="our-development-process">Our Development Process</h2>
+<p>Some of our core contributers will be working directly on GitHub. These changes will be public from the beginning.</p>
+<h3 id="master-changes-fast"><code>master</code> changes fast</h3>
+<p>We move fast and most likely things will break. Every time there is a commit our CI server will run the tests and hopefully they will pass all times. We will do our best to properly communicate the changes that can affect the application API and always version appropriately in order to make easier for you to use a specific version.</p>
+<h3 id="pull-requests">Pull Requests</h3>
+<p>The core contributors will be monitoring for pull requests. When we get one, we will pull it in and apply it to our codebase and run our test suite to ensure nothing breaks. Then one of the core contributors needs to verify that all is working appropriately. When the API changes we may need to fix internal uses, which could cause some delay. We&apos;ll do our best to provide updates and feedback throughout the process.</p>
+<p><em>Before</em> submitting a pull request, please make sure the following is done:</p>
+<ol>
+<li>Fork the repo and create your branch from <code>master</code>.</li>
+<li>If you&apos;ve added code that should be tested, add tests!</li>
+<li>If you&apos;ve changed APIs, update the documentation.</li>
+<li>Ensure the test suite passes (<code>athena cli tests</code>).</li>
+</ol>
+<h2 id="bugs">Bugs</h2>
+<h3 id="where-to-find-known-issues">Where to Find Known Issues</h3>
+<p>We will be using GitHub Issues for our public bugs. We will keep a close eye on this and try to make it clear when we have an internal fix in progress. Before filing a new task, try to make sure your problem doesn&apos;t already exist.</p>
+<h3 id="reporting-new-issues">Reporting New Issues</h3>
+<p>The best way to get your bug fixed is to provide a reduced test case.</p>
+<h2 id="how-to-get-in-touch">How to Get in Touch</h2>
+<p>Mailing list - <a href="https://groups.google.com/a/olx.com/d/forum/athena" target="_blank">Athena in Google Groups</a></p>
+<h2 id="development-best-practices">Development best practices</h2>
+<h3 id="common">Common</h3>
+<ul>
+<li><p>Global Variables :</p>
+<ul>
+<li><strong>SHOULD</strong> be avoided and used only to store global state</li>
+<li><strong>MUST</strong> be handled using getters and setters</li>
+<li><strong>MUST</strong> be named in uppercase, e.g.: <code>MY_VARIABLE_NAME</code></li>
+<li><strong>MUST</strong> be prefixed with ATHENA<em> when defined in Athena engine and prefixed with ```ATHENA_PLG</em>${PLUGIN<em>NAME}</em>``` when defined in a plugin, e.g.:<ul>
+<li><code>ATHENA_MY_VARIABLE_NAME</code></li>
+<li><code>ATHENA_PLG_SELENIUM_MY_VARIABLE_NAME</code></li>
+</ul>
 </li>
-<li>If you&apos;ve added code that should be tested, add tests!
+</ul>
 </li>
-<li>If you&apos;ve changed APIs, update the documentation.
+<li><p>Local variables :</p>
+<ul>
+<li><strong>MUST</strong> be declared with the local keyword</li>
+<li><strong>MUST</strong> be named in lowercase</li>
+</ul>
 </li>
-<li>Ensure the test suite passes (<code>athena cli tests</code>).
-</li></ol>
-<h2 id="bugs">Bugs</h2><h3 id="where-to-find-known-issues">Where to Find Known Issues</h3><p>We will be using GitHub Issues for our public bugs. We will keep a close eye on this and try to make it clear when we have an internal fix in progress. Before filing a new task, try to make sure your problem doesn&apos;t already exist.</p><h3 id="reporting-new-issues">Reporting New Issues</h3><p>The best way to get your bug fixed is to provide a reduced test case.</p><h2 id="how-to-get-in-touch">How to Get in Touch</h2><p>Mailing list - <a href="https://groups.google.com/a/olx.com/d/forum/athena" target="_blank">Athena in Google Groups</a></p><h2 id="development-best-practices">Development best practices</h2><h3 id="common">Common</h3><ul><li><p>Global Variables :</p><ul><li><strong>SHOULD</strong> be avoided and used only to store global state
-</li>
-<li><strong>MUST</strong> be handled using getters and setters
-</li>
-<li><strong>MUST</strong> be named in uppercase, e.g.: <code>MY_VARIABLE_NAME</code>
-</li>
-<li><strong>MUST</strong> be prefixed with ATHENA<em> when defined in Athena engine and prefixed with ```ATHENA_PLG</em>${PLUGIN<em>NAME}</em>``` when defined in a plugin, e.g.:
-<ul><li><code>ATHENA_MY_VARIABLE_NAME</code>
-</li>
-<li><code>ATHENA_PLG_SELENIUM_MY_VARIABLE_NAME</code>
-</li></ul>
-</li></ul>
-</li></ul>
-<ul><li><p>Local variables :</p><ul><li><strong>MUST</strong> be declared with the local keyword
-</li>
-<li><strong>MUST</strong> be named in lowercase
-</li></ul>
-</li></ul>
-<ul><li><p>CLI functions:</p><ul><li><strong>MUST</strong> be tested  and documented
-</li>
-<li><p>Documentation <strong>MUST</strong> follow the following format :</p><pre><code># Description
+</ul>
+<ul>
+<li>CLI functions:<ul>
+<li><strong>MUST</strong> be tested  and documented</li>
+<li>Documentation <strong>MUST</strong> follow the following format :<pre><code># Description
 # USAGE: &lt;name_of_function&gt; [&lt;arguments&gt;]
-# RETURN: &lt;type_of_return&gt;</code></pre>
-<ul><li>when used as a core athena function <strong>MUST</strong> follow the naming schema <code>athena[.${context}.]${function_name}</code>
-</li></ul>
+# RETURN: &lt;type_of_return&gt;
+</code></pre></li>
+<li>when used as a core athena function <strong>MUST</strong> follow the naming schema <code>athena[.${context}.]${function_name}</code></li>
+<li>when used as a global plugin function <strong>MUST</strong> follow the naming schema <code>athena.plugins.${plugin_name}.${function_name}</code></li>
+<li><strong>MUST</strong> always return 0 when success and not 0 when fail</li>
+</ul>
 </li>
-<li>when used as a global plugin function <strong>MUST</strong> follow the naming schema <code>athena.plugins.${plugin_name}.${function_name}</code>
+</ul>
+<ul>
+<li><p>Plugin Commands</p>
+<ul>
+<li><strong>MUST</strong> NOT have a shebang line</li>
+<li>Arguments <strong>MUST</strong> only be accessed or setted using the functions in <code>athena.argument</code> library</li>
+</ul>
 </li>
-<li><strong>MUST</strong> always return 0 when success and not 0 when fail
-</li></ul>
-</li></ul>
-<ul><li><p>Plugin Commands</p><ul><li><strong>MUST</strong> NOT have a shebang line
+</ul>
+<h3 id="plugins">Plugins</h3>
+<ul>
+<li><p>Library functions <strong>MUST</strong> be located <code>${PLUGIN}/bin/lib</code> and when multiple contexts are handled <strong>MUST</strong> follow the naming schema <code>${PLUGIN}/bin/lib/functions.${CONTEXT}.sh</code>, e.g.: <code>java/bin/lib/functions.api.sh</code></p>
 </li>
-<li>Arguments <strong>MUST</strong> only be accessed or setted using the functions in <code>athena.argument</code> library
-</li></ul>
-</li></ul>
-<h3 id="plugins">Plugins</h3><ul><li><p>Library functions <strong>MUST</strong> be located <code>${PLUGIN}/bin/lib</code> and when multiple contexts are handled <strong>MUST</strong> follow the naming schema <code>${PLUGIN}/bin/lib/functions.${CONTEXT}.sh</code>, e.g.: <code>java/bin/lib/functions.api.sh</code></p></li>
-<li><p>Library functions <strong>MUST</strong> follow the following name schema : <code>athena.plugins.${plugin_name}.${function_name}</code></p></li></ul>
-<ul><li><p>Folders that are supposed to be mounted in the docker container <strong>MUST</strong> be located in <code>${PLUGIN}/mnt/${context}</code>, e.g.: <code>java/mnt/api</code></p></li>
-<li><p>Source code used per context <strong>MUST</strong> follow a recommended standard, e.g.: PHP <strong>MUST</strong> follow PSR-2, JAVA <strong>MUST</strong> follow Google (<a href="https://google.github.io/styleguide/javaguide.html" target="_blank">https://google.github.io/styleguide/javaguide.html</a>) or other widely adopted</p></li>
-<li><p>External libraries <strong>MUST</strong> not be &#x201C;shipped&#x201D; with the plugin and <strong>MUST</strong> have a <strong>License</strong> that allows us to use it as we see fit, e.g.: Apache 2.0 License</p></li>
-<li><p>Documentation <strong>MUST</strong> be provided</p></li>
-<li><p>Examples on HOW TO USE <strong>MUST</strong> be provided</p></li>
-<li><p>The init command <strong>MUST</strong> NOT be used directly</p></li></ul>
-<h2 id="license">License</h2><p>By contributing to Athena and Athena Official Plugins, you agree that your contributions will be licensed under the <a href="LICENSE">Apache License Version 2.0 (APLv2)</a>.</p>
+<li><p>Library functions <strong>MUST</strong> follow the following name schema : <code>athena.plugins.${plugin_name}.${function_name}</code></p>
+</li>
+</ul>
+<ul>
+<li><p>Folders that are supposed to be mounted in the docker container <strong>MUST</strong> be located in <code>${PLUGIN}/mnt/${context}</code>, e.g.: <code>java/mnt/api</code></p>
+</li>
+<li><p>Source code used per context <strong>MUST</strong> follow a recommended standard, e.g.: PHP <strong>MUST</strong> follow PSR-2, JAVA <strong>MUST</strong> follow Google (<a href="https://google.github.io/styleguide/javaguide.html" target="_blank">https://google.github.io/styleguide/javaguide.html</a>) or other widely adopted</p>
+</li>
+<li><p>External libraries <strong>MUST</strong> not be &#x201C;shipped&#x201D; with the plugin and <strong>MUST</strong> have a <strong>License</strong> that allows us to use it as we see fit, e.g.: Apache 2.0 License</p>
+</li>
+<li><p>Documentation <strong>MUST</strong> be provided</p>
+</li>
+<li><p>Examples on HOW TO USE <strong>MUST</strong> be provided</p>
+</li>
+<li><p>The init command <strong>MUST</strong> NOT be used directly</p>
+</li>
+</ul>
+<h2 id="license">License</h2>
+<p>By contributing to Athena and Athena Official Plugins, you agree that your contributions will be licensed under the <a href="LICENSE">Apache License Version 2.0 (APLv2)</a>.</p>
+
                                 
                                 </section>
                             
@@ -466,7 +502,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Contributing","level":"2.1","depth":1,"next":{"title":"License","level":"2.2","depth":1,"path":"LICENSE.md","ref":"LICENSE.md","articles":[]},"previous":{"title":"Connect Node to Remote Host","level":"1.3.4","depth":2,"anchor":"#connect-node-to-remote-host","path":"getting-started/configuration-settings.md","ref":"getting-started/configuration-settings.md#connect-node-to-remote-host","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CONTRIBUTING.md","mtime":"2016-09-22T14:45:55.225Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-22T14:47:07.754Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Contributing","level":"2.1","depth":1,"next":{"title":"License","level":"2.2","depth":1,"path":"LICENSE.md","ref":"LICENSE.md","articles":[]},"previous":{"title":"Connect Node to Remote Host","level":"1.3.4","depth":2,"anchor":"#connect-node-to-remote-host","path":"getting-started/configuration-settings.md","ref":"getting-started/configuration-settings.md#connect-node-to-remote-host","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"CONTRIBUTING.md","mtime":"2016-11-30T08:58:56.712Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-30T09:00:00.711Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

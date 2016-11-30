@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Introduction · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Introduction · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -371,25 +371,41 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="selenium-plugin">Selenium Plugin</h1><p>This plugin provides a straightforward API (cli and programatically) to handle browser automation using <a href="http://www.seleniumhq.org/" target="_blank">Selenium</a>.</p><p>It supports management of Selenium components such as the Grid Hub as well as the Browser Nodes (Firefox, Chrome) and PhantomJs.</p><p>You can easily use this plugin in your local development machine or in a CI/CD pipeline.</p><h2 id="how-to-install-">How to Install ?</h2><p>To install it simply run the following command :</p><pre><code class="lang-bash">$ athena plugins install selenium https://github.com/athena-oss/plugin-selenium.git</code></pre>
-<p>or</p><ul><li>On MAC OSX using <a href="http://brew.sh/" target="_blank">Homebrew</a> :
-<pre><code class="lang-bash">$ brew tap athena-oss/tap
-$ brew install plugin-selenium</code></pre>
-</li></ul>
-<p>Read the <a href="http://athena-oss.github.io/plugin-selenium" target="_blank">Documentation</a> on using Athena.</p><h2 id="how-to-use-">How to Use ?</h2><p>This plugin provides the following commands :</p><h3 id="start---starts-the-components">start - starts the components</h3><pre><code class="lang-bash">$ athena selenium start &lt;<span class="hljs-built_in">type</span>&gt; &lt;version&gt; [--port=&lt;port&gt;|--instances=&lt;nr_of_instances&gt;] [&lt;docker_options&gt;...]</code></pre>
-<ul><li>type : hub, firefox, firefox-debug, chrome, chrome-debug, phantomjs
+                                <h1 id="selenium-plugin">Selenium Plugin</h1>
+<p>This plugin provides a straightforward API (cli and programatically) to handle browser automation using <a href="http://www.seleniumhq.org/" target="_blank">Selenium</a>.</p>
+<p>It supports management of Selenium components such as the Grid Hub as well as the Browser Nodes (Firefox, Chrome) and PhantomJs.</p>
+<p>You can easily use this plugin in your local development machine or in a CI/CD pipeline.</p>
+<h2 id="how-to-install-">How to Install ?</h2>
+<p>To install it simply run the following command :</p>
+<pre><code class="lang-bash">$ athena plugins install selenium https://github.com/athena-oss/plugin-selenium.git
+</code></pre>
+<p>or</p>
+<ul>
+<li>On MAC OSX using <a href="http://brew.sh/" target="_blank">Homebrew</a> :<pre><code class="lang-bash">$ brew tap athena-oss/tap
+$ brew install plugin-selenium
+</code></pre>
 </li>
-<li>version : 2.49.1, etc...
-</li>
-<li>--port : specifies which port to be exposed on the host machine
-</li>
-<li>--instances : specifies how many instances should be started
-</li></ul>
-<h3 id="stop---stops-the-components">stop - stops the components</h3><pre><code class="lang-bash">$ athena selenium stop &lt;all|<span class="hljs-built_in">type</span>&gt; [--port=&lt;port&gt;|--instance=&lt;instance_nr&gt;]
+</ul>
+<p>Read the <a href="http://athena-oss.github.io/plugin-selenium" target="_blank">Documentation</a> on using Athena.</p>
+<h2 id="how-to-use-">How to Use ?</h2>
+<p>This plugin provides the following commands :</p>
+<h3 id="start---starts-the-components">start - starts the components</h3>
+<pre><code class="lang-bash">$ athena selenium start &lt;<span class="hljs-built_in">type</span>&gt; &lt;version&gt; [--port=&lt;port&gt;|--instances=&lt;nr_of_instances&gt;] [&lt;docker_options&gt;...]
+</code></pre>
+<ul>
+<li>type : hub, firefox, firefox-debug, chrome, chrome-debug, phantomjs</li>
+<li>version : 2.49.1, etc...</li>
+<li>--port : specifies which port to be exposed on the host machine</li>
+<li>--instances : specifies how many instances should be started</li>
+</ul>
+<h3 id="stop---stops-the-components">stop - stops the components</h3>
+<pre><code class="lang-bash">$ athena selenium stop &lt;all|<span class="hljs-built_in">type</span>&gt; [--port=&lt;port&gt;|--instance=&lt;instance_nr&gt;]
 
 $ <span class="hljs-comment"># e.g. stop hub</span>
-$ athena selenium stop hub</code></pre>
-<h3 id="logs---shows-the-logs-of-the-components">logs - shows the logs of the components</h3><pre><code class="lang-bash">$ athena selenium logs &lt;<span class="hljs-built_in">type</span>|component_name&gt; [--port=&lt;port&gt;|--instance=&lt;instance_nr&gt;]
+$ athena selenium stop hub
+</code></pre>
+<h3 id="logs---shows-the-logs-of-the-components">logs - shows the logs of the components</h3>
+<pre><code class="lang-bash">$ athena selenium logs &lt;<span class="hljs-built_in">type</span>|component_name&gt; [--port=&lt;port&gt;|--instance=&lt;instance_nr&gt;]
 
 $ <span class="hljs-comment"># e.g. &apos;athena info&apos; shows running &apos;athena-selenium-hub-default&apos;</span>
 $ athena selenium logs hub
@@ -397,8 +413,10 @@ $ athena selenium logs hub
 $ <span class="hljs-comment"># e.g. &apos;athena info&apos; shows running &apos;athena-node-firefox-4441&apos;</span>
 $ athena selenium logs firefox 4441
 $ <span class="hljs-comment"># or also possible</span>
-$ athena selenium logs athena-node-firefox-4441</code></pre>
-<h3 id="terminal---connects-to-the-terminal-of-the-component">terminal - connects to the terminal of the component</h3><pre><code class="lang-bash">$ athena selenium terminal &lt;<span class="hljs-built_in">type</span>|component_name&gt; [--port=&lt;port&gt;|--instance=&lt;instance_nr&gt;]
+$ athena selenium logs athena-node-firefox-4441
+</code></pre>
+<h3 id="terminal---connects-to-the-terminal-of-the-component">terminal - connects to the terminal of the component</h3>
+<pre><code class="lang-bash">$ athena selenium terminal &lt;<span class="hljs-built_in">type</span>|component_name&gt; [--port=&lt;port&gt;|--instance=&lt;instance_nr&gt;]
 
 $ <span class="hljs-comment"># e.g. &apos;athena info&apos; shows running &apos;athena-selenium-hub-default&apos;</span>
 $ athena selenium terminal hub
@@ -406,14 +424,29 @@ $ athena selenium terminal hub
 $ <span class="hljs-comment"># e.g. &apos;athena info&apos; shows running &apos;athena-node-firefox-4441&apos;</span>
 $ athena selenium terminal firefox 4441
 $ <span class="hljs-comment"># or also possible</span>
-$ athena selenium terminal athena-node-firefox-4441</code></pre>
-<h3 id="cleanup---removes-the-components-from-the-host-machine">cleanup - removes the component(s) from the host machine</h3><pre><code class="lang-bash">$ athena selenium cleanup &lt;all|<span class="hljs-built_in">type</span>&gt;</code></pre>
-<h2 id="contributing">Contributing</h2><p>Checkout our guidelines on how to contribute in <a href="CONTRIBUTING.html">CONTRIBUTING.md</a>.</p><h2 id="versioning">Versioning</h2><p>Releases are managed using github&apos;s release feature. We use <a href="http://semver.org" target="_blank">Semantic Versioning</a> for all
+$ athena selenium terminal athena-node-firefox-4441
+</code></pre>
+<h3 id="cleanup---removes-the-components-from-the-host-machine">cleanup - removes the component(s) from the host machine</h3>
+<pre><code class="lang-bash">$ athena selenium cleanup &lt;all|<span class="hljs-built_in">type</span>&gt;
+</code></pre>
+<h2 id="contributing">Contributing</h2>
+<p>Checkout our guidelines on how to contribute in <a href="CONTRIBUTING.html">CONTRIBUTING.md</a>.</p>
+<h2 id="versioning">Versioning</h2>
+<p>Releases are managed using github&apos;s release feature. We use <a href="http://semver.org" target="_blank">Semantic Versioning</a> for all
 the releases. Every change made to the code base will be referred to in the release notes (except for
-cleanups and refactorings).</p><h2 id="license">License</h2><p>Licensed under the <a href="LICENSE">Apache License Version 2.0 (APLv2)</a>.</p><h2 id="troubleshooting">Troubleshooting</h2><ul><li>Debugging Browser with vnc and Docker for Mac
-</li></ul>
-<p>There is a <a href="https://github.com/SeleniumHQ/docker-selenium/issues/227" target="_blank">known issue</a> with docker for mac and Selenium node docker images. To workaround this situation add the following options to the start command :</p><pre><code class="lang-bash"><span class="hljs-_">-e</span> no_proxy=localhost <span class="hljs-_">-e</span> HUB_ENV_no_proxy=localhost</code></pre>
-<p>e.g.:</p><pre><code class="lang-bash">athena selenium start firefox-debug latest -p 6002:5900 <span class="hljs-_">-e</span> no_proxy=localhost <span class="hljs-_">-e</span> HUB_ENV_no_proxy=localhost</code></pre>
+cleanups and refactorings).</p>
+<h2 id="license">License</h2>
+<p>Licensed under the <a href="LICENSE">Apache License Version 2.0 (APLv2)</a>.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li>Debugging Browser with vnc and Docker for Mac</li>
+</ul>
+<p>There is a <a href="https://github.com/SeleniumHQ/docker-selenium/issues/227" target="_blank">known issue</a> with docker for mac and Selenium node docker images. To workaround this situation add the following options to the start command :</p>
+<pre><code class="lang-bash"><span class="hljs-_">-e</span> no_proxy=localhost <span class="hljs-_">-e</span> HUB_ENV_no_proxy=localhost
+</code></pre>
+<p>e.g.:</p>
+<pre><code class="lang-bash">athena selenium start firefox-debug latest -p 6002:5900 <span class="hljs-_">-e</span> no_proxy=localhost <span class="hljs-_">-e</span> HUB_ENV_no_proxy=localhost
+</code></pre>
 
                                 
                                 </section>
@@ -453,7 +486,7 @@ cleanups and refactorings).</p><h2 id="license">License</h2><p>Licensed under th
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Running Hub and Nodes","level":"1.2","depth":1,"path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md","articles":[{"title":"Selenium Grid Hub","level":"1.2.1","depth":2,"anchor":"#selenium-grid-hub","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#selenium-grid-hub","articles":[]},{"title":"Grid Nodes","level":"1.2.2","depth":2,"anchor":"#grid-nodes","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#grid-nodes","articles":[]},{"title":"Link Grid Nodes to Local Hub","level":"1.2.3","depth":2,"anchor":"#link-grid-nodes-to-local-hub","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#link-grid-nodes-to-local-hub","articles":[]},{"title":"Expose Grid Hub or Nodes Port","level":"1.2.4","depth":2,"anchor":"#expose-grid-hub-or-nodes-port","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#expose-grid-hub-or-nodes-port","articles":[]},{"title":"Versions","level":"1.2.5","depth":2,"anchor":"#versions","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#versions","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2016-09-22T14:45:55.225Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-09-22T14:47:07.754Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Running Hub and Nodes","level":"1.2","depth":1,"path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md","articles":[{"title":"Selenium Grid Hub","level":"1.2.1","depth":2,"anchor":"#selenium-grid-hub","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#selenium-grid-hub","articles":[]},{"title":"Grid Nodes","level":"1.2.2","depth":2,"anchor":"#grid-nodes","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#grid-nodes","articles":[]},{"title":"Link Grid Nodes to Local Hub","level":"1.2.3","depth":2,"anchor":"#link-grid-nodes-to-local-hub","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#link-grid-nodes-to-local-hub","articles":[]},{"title":"Expose Grid Hub or Nodes Port","level":"1.2.4","depth":2,"anchor":"#expose-grid-hub-or-nodes-port","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#expose-grid-hub-or-nodes-port","articles":[]},{"title":"Versions","level":"1.2.5","depth":2,"anchor":"#versions","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#versions","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2016-11-30T08:58:56.716Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-30T09:00:00.711Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
