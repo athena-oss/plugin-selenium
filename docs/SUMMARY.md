@@ -6,6 +6,7 @@
 	* [Grid Nodes](getting-started/running-grid-hub-and-nodes.md#grid-nodes)
 	* [Link Grid Nodes to Local Hub](getting-started/running-grid-hub-and-nodes.md#link-grid-nodes-to-local-hub)
 	* [Expose Grid Hub or Nodes Port](getting-started/running-grid-hub-and-nodes.md#expose-grid-hub-or-nodes-port)
+	* [Debug with a VNC](getting-started/running-grid-hub-and-nodes.md#debug-with-a-vnc)
 	* [Versions](getting-started/running-grid-hub-and-nodes.md#versions)
 * [Configuration Settings](getting-started/configuration-settings.md)
 	* [Java and Selenium Options](getting-started/configuration-settings.md#java-and-selenium-options)

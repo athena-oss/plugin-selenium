@@ -37,13 +37,28 @@ $ athena selenium start hub 2.53.0 --port=5001
 $ athena selenium start firefox 2.53.0 --port=5001
 ```
 
-**NOTE:** When using `chrome-debug` or `firefox-debug`, in order to access the vnc server you must specify the following options after the command :
+# Debug with a VNC
 
-`-p <the_port_you_want_to_bind>:5900` 
+When you use `chrome-debug` or `firefox-debug` you can connect to a VNC by exporting the container port 5900 to the outside, e.g.:
 
-e.g.: 
+`athena selenium start firefox-debug 2.41.1 -p 5900:5900`
 
-`athena selenium start firefox-debug 2.53.0 -p 6002:5900`
+If you want to start multiple instances of the `firefox-debug` browser, and you want docker to handle automatically the ports, you can do:
+- `athena selenium start firefox-debug 2.41.1 --instances=3 -P`
+
+This will start 3 instances of `firefox-debug` and will export all the ports automatically. 
+
+Run `docker ps` and check the containers port that point to `5900` for e.g.:
+
+```
+CONTAINER ID  ...   PORTS                     NAMES
+18f70efe1f71  ...   0.0.0.0:32770->5900/tcp   athena-selenium-0-firefox-debug-2
+cc029088974b  ...   0.0.0.0:32769->5900/tcp   athena-selenium-0-firefox-debug-1
+456eb5673da9  ...   0.0.0.0:32768->5900/tcp   athena-selenium-0-firefox-debug
+7a755dd68a3f  ...   4444/tcp                  athena-selenium-0-hub
+```
+
+This information tells us that if I want to connect to `athena-selenium-0-firefox-debug-2` VNC I have to to it to `vnc://localhost:32770`.
 
 # Versions
 
