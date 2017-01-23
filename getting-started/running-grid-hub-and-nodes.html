@@ -206,6 +206,19 @@
     
         <li class="chapter " data-level="1.2.5" data-path="running-grid-hub-and-nodes.html">
             
+                <a href="running-grid-hub-and-nodes.html#debug-with-a-vnc">
+            
+                    
+                    Debug with a VNC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="running-grid-hub-and-nodes.html">
+            
                 <a href="running-grid-hub-and-nodes.html#versions">
             
                     
@@ -395,10 +408,21 @@
 </code></pre>
 <pre><code class="lang-bash">$ athena selenium start firefox 2.53.0 --port=5001
 </code></pre>
-<p><strong>NOTE:</strong> When using <code>chrome-debug</code> or <code>firefox-debug</code>, in order to access the vnc server you must specify the following options after the command :</p>
-<p><code>-p &lt;the_port_you_want_to_bind&gt;:5900</code> </p>
-<p>e.g.: </p>
-<p><code>athena selenium start firefox-debug 2.53.0 -p 6002:5900</code></p>
+<h1 id="debug-with-a-vnc">Debug with a VNC</h1>
+<p>When you use <code>chrome-debug</code> or <code>firefox-debug</code> you can connect to a VNC by exporting the container port 5900 to the outside, e.g.:</p>
+<p><code>athena selenium start firefox-debug 2.41.1 -p 5900:5900</code></p>
+<p>If you want to start multiple instances of the <code>firefox-debug</code> browser, and you want docker to handle automatically the ports, you can do:</p>
+<ul>
+<li><code>athena selenium start firefox-debug 2.41.1 --instances=3 -P</code></li>
+</ul>
+<p>This will start 3 instances of <code>firefox-debug</code> and will export all the ports automatically. </p>
+<p>Run <code>docker ps</code> and check the containers port that point to <code>5900</code> for e.g.:</p>
+<pre><code>CONTAINER ID  ...   PORTS                     NAMES
+18f70efe1f71  ...   0.0.0.0:32770-&gt;5900/tcp   athena-selenium-0-firefox-debug-2
+cc029088974b  ...   0.0.0.0:32769-&gt;5900/tcp   athena-selenium-0-firefox-debug-1
+456eb5673da9  ...   0.0.0.0:32768-&gt;5900/tcp   athena-selenium-0-firefox-debug
+7a755dd68a3f  ...   4444/tcp                  athena-selenium-0-hub
+</code></pre><p>This information tells us that if I want to connect to <code>athena-selenium-0-firefox-debug-2</code> VNC I have to to it to <code>vnc://localhost:32770</code>.</p>
 <h1 id="versions">Versions</h1>
 <p>A list of available versions for both hub and nodes, can be found in official Selenium Docker Hub page.</p>
 <ul>
@@ -449,7 +473,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Running Hub and Nodes","level":"1.2","depth":1,"next":{"title":"Selenium Grid Hub","level":"1.2.1","depth":2,"anchor":"#selenium-grid-hub","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#selenium-grid-hub","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"getting-started/running-grid-hub-and-nodes.md","mtime":"2016-11-30T08:58:56.716Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-30T09:00:00.711Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Running Hub and Nodes","level":"1.2","depth":1,"next":{"title":"Selenium Grid Hub","level":"1.2.1","depth":2,"anchor":"#selenium-grid-hub","path":"getting-started/running-grid-hub-and-nodes.md","ref":"getting-started/running-grid-hub-and-nodes.md#selenium-grid-hub","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"getting-started/running-grid-hub-and-nodes.md","mtime":"2017-01-23T17:18:56.313Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-23T17:20:02.162Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
