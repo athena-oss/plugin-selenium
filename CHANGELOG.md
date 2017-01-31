@@ -1,6 +1,7 @@
 ## 0.3.2 (January 31, 2017)
 
 ### Changed
+- bc083f4 Start multiple instances in parallel
 - 3041e39 Try to fix automatically debug browsers on MacOSX hanging
 
 ## 0.3.1 (September 9, 2016)
