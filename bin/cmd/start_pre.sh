@@ -52,10 +52,10 @@ do
 			athena.plugins.selenium.start_hub "$version" "$instance_id" "${docker_options[@]}"
 			;;
 		"firefox"|"firefox-debug"|"chrome"|"chrome-debug")
-			athena.plugins.selenium.start_selenium_browser "$type" "$version" "$instance_id" "${docker_options[@]}"
+			athena.plugins.selenium.start_selenium_browser "$type" "$version" "$instance_id" "${docker_options[@]}" &
 			;;
 		"phantomjs")
-			athena.plugins.selenium.start_phantomjs_browser "$version" "$instance_id" "${docker_options[@]}"
+			athena.plugins.selenium.start_phantomjs_browser "$version" "$instance_id" "${docker_options[@]}" &
 			;;
 		*)
 			athena.fatal "Grid component '$type' not supported..."
@@ -63,3 +63,4 @@ do
 	esac
 	instance_id=$i
 done
+wait
