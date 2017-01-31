@@ -88,6 +88,14 @@ function athena.plugins.selenium.start_selenium_browser()
 {
 	local docker_options=("${@:4}")
 	local string_in_logs="The node is registered to the hub and ready to use"
+
+	# On MacOSX docker sets 'no_proxy" variable which breaks the selenium docker container
+	# at the time of this comment none of the most recent version have actually fixed this.
+	# So let's make it easier for our users and provide a quick automated fix
+	if [[ "$1" =~ .*-debug$ ]] && [[ "$(uname)" == "Darwin" ]]; then
+		docker_options+=(-e no_proxy=localhost -e HUB_ENV_no_proxy=localhost -e ATHENA_PROXY_ENV_no_proxy=localhost)
+	fi
+
 	athena.plugins.selenium.start_browser "$1" "$2" "$3" "$string_in_logs" "${docker_options[@]}"
 }
 
