@@ -1,3 +1,8 @@
+## 0.3.2 (January 31, 2017)
+
+### Changed
+- 3041e39 Try to fix automatically debug browsers on MacOSX hanging
+
 ## 0.3.1 (September 9, 2016)
 
 ### Added
